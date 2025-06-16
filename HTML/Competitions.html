@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitions | Kaggle</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/Competitions.css">
+    <link href="https://www.kaggle.com/static/images/favicon.ico" rel="shortcut icon" type="image/x-icon" id="dynamic-favicon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="hamburger-menu" id="hamburger-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="search-bar search-bar-header">
+        <button><i class="fas fa-search"></i></button>
+        <input type="text" placeholder="Search">
+      </div>
+      <div class="auth-buttons">
+        <button>Sign In</button>
+        <button class="register">Register</button>
+      </div>
+    </div>
+  </header>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-logo-row">
+      <span class="sidebar-hamburger" style="font-size: 1.3rem;"><i class="fas fa-bars"></i></span>
+      <a href="index.html">
+        <img src="https://www.kaggle.com/static/images/site-logo.svg" alt="Kaggle Logo" class="sidebar-kaggle-logo">
+      </a>
+    </div>
+    <button class="create-btn"><i class="fas fa-plus"></i> Create</button>
+    <ul class="sidebar-menu">
+      <li><a href="index.html"><span class="material-symbols-outlined">home</span> Home</a></li>
+      <li class="active"><a href="Competitions.html"><span class="material-symbols-outlined">emoji_events</span> Competitions</a></li>
+      <li><a href="datasets.html"><span class="material-symbols-outlined">table_chart</span> Datasets</a></li>
+      <li><a href="Kaggle_Ranking.html"><span class="material-symbols-outlined">leaderboard</span> Rankings</a></li>
+      <li><a href="rewards.html"><span class="material-symbols-outlined">redeem</span> Rewards</a></li>
+
+      <li><a href="Discussions.html"><span class="material-symbols-outlined">forum</span> Discussions</a></li>
+      <li><a href="Discussions.html"><span class="material-symbols-outlined">school</span> Learn</a></li>
+      <li><a href="More.html"><span class="material-symbols-outlined">more_horiz</span> More</a></li>
+    </ul>
+    <div class="active-events">
+      <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 28px; margin-right: 8px;">content_copy</span>
+      View Active Events
+    </div>
+  </div>
+  <div class="main-content competitions-main-content">
+    <div class="spacer-top"></div>
+    <section class="competitions-header">
+      <div class="competitions-header-left">
+        <h1>Competitions</h1>
+        <p>Grow your data science skills by competing in our exciting <br> competitions. Find help in the <u> <a href="#">documentation</a> </u> or learn about <br> <u> <a href="#">Community Competitions</a> </u>.</p>
+        <button class="host-btn">Host a Competition</button>
+        <section class="search-filter search-bar-main">
+          <div class="search-bar">
+            <button><i class="fas fa-search"></i></button>
+            <input type="text" placeholder="Search competitions">
+            <button class="filters-btn"><span class="material-symbols-outlined">filter_list</span> Filters</button>
+          </div>
+        </section>
+      </div>
+      <img src="https://www.kaggle.com/static/images/competitions/landing-header-light.svg" alt="illustration" class="header-illustration">
+    </section>
+    <section class="competition-categories">
+      <button class="category active"><span class="cat-title">All Competitions</span><span class="cat-desc">Everything, past & present</span><i class="fas fa-list"></i></button>
+      <button class="category"><span class="cat-title">Featured</span><span class="cat-desc">Premier challenges with prizes</span><i class="fas fa-star"></i></button>
+      <button class="category"><span class="cat-title">Getting Started</span><span class="cat-desc">Approachable ML fundamentals</span><i class="far fa-flag"></i></button>
+      <button class="category"><span class="cat-title">Research</span><span class="cat-desc">Scientific and scholarly challenges</span><i class="fas fa-flask"></i></button>
+      <button class="category"><span class="cat-title">Community</span><span class="cat-desc">Created by fellow Kagglers</span><i class="fas fa-users"></i></button>
+      <button class="category"><span class="cat-title">Playground</span><span class="cat-desc">Fun practice problems</span><i class="fas fa-gamepad"></i></button>
+    </section>
+    <section class="getting-started">
+      <div class="section-header">
+        <span><i class="far fa-flag"></i> Getting Started</span>
+        <a href="#" class="see-all">See all</a>
+      </div>
+      <p>Competitions with approachable ML fundamentals.</p>
+      <div class="competition-cards">
+        <div class="card">
+          <img src="TitanicMachine.png" alt="Titanic">
+          <div class="card-content">
+            <div class="card-org">organized by Kaggle</div>
+            <div class="card-title">Titanic - Machine <br> Learning from Disaster</div>
+            <div class="card-desc">Start here! Predict survival on the Titanic and get familiar with ML basics</div>
+            <div class="card-meta">
+              <span class="meta-type">Getting Started</span>
+              <span class="meta-teams">15881 Teams</span>
+            </div>
+            <div class="card-bottom-row">
+              <span class="card-knowledge">Knowledge</span>
+              <span class="card-ongoing">Ongoing</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="HousePrices.png" alt="House Prices">
+          <div class="card-content">
+            <div class="card-org">organized by Kaggle</div>
+            <div class="card-title">House Prices - Advanced <br> Regression Techniques</div>
+            <div class="card-desc">Predict sales prices and practice feature engineering, RFs, and gradient boosting</div>
+            <div class="card-meta">
+              <span class="meta-type">Getting Started</span>
+              <span class="meta-teams">4738 Teams</span>
+            </div>
+            <div class="card-bottom-row">
+              <span class="card-knowledge">Knowledge</span>
+              <span class="card-ongoing">Ongoing</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="SpaceShipTitanic.png" alt="Spaceship Titanic">
+          <div class="card-content">
+            <div class="card-org">organized by Kaggle</div>
+            <div class="card-title">Spaceship Titanic</div>
+            <div class="card-desc">Predict which passengers are transported to an alternate dimension</div>
+            <div class="card-meta">
+              <span class="meta-type">Getting Started</span>
+              <span class="meta-teams">1907 Teams</span>
+            </div>
+            <div class="card-bottom-row">
+              <span class="card-knowledge">Knowledge</span>
+              <span class="card-ongoing">Ongoing</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="LLMclassification.png" alt="LLM Classification">
+          <div class="card-content">
+            <div class="card-org">organized by Kaggle</div>
+            <div class="card-title">LLM Classification <br> Finetuning</div>
+            <div class="card-desc">Finetune LLMs for classification tasks with real-world datasets</div>
+            <div class="card-meta">
+              <span class="meta-type">Getting Started</span>
+              <span class="meta-teams">-- Teams</span>
+            </div>
+            <div class="card-bottom-row">
+              <span class="card-knowledge">Knowledge</span>
+              <span class="card-ongoing">Ongoing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-competitions">
+      <div class="featured-header-row">
+        <span class="material-symbols-outlined" style="font-size: 2rem; vertical-align: middle; margin-right: 8px;">star</span>
+        <span class="featured-title">Featured Competitions</span>
+        <span class="featured-hotness">Hotness <span class="material-symbols-outlined" style="font-size: 1.2rem; vertical-align: middle;">arrow_drop_down</span></span>
+        <span class="featured-view-toggle"><span class="material-symbols-outlined" style="font-size: 1.5rem; vertical-align: middle;">view_agenda</span></span>
+      </div>
+      <div class="featured-cards">
+        <div class="featured-card">
+          <img src="ARCprice.png" alt="ARC Prize 2025">
+          <div class="featured-card-content">
+            <div class="featured-card-title">ARC Prize 2025 <span class="material-symbols-outlined" style="float:right;font-size:1.3rem;">more_vert</span></div>
+            <div class="featured-card-desc">Create an AI capable of novel reasoning..</div>
+            <div class="featured-card-meta">Featured &middot; Code Competition</div>
+            <div class="featured-card-teams">481 Teams</div>
+          </div>
+          <div class="featured-card-bottom-row">
+            <span class="featured-card-prize">$1,000,000</span>
+            <span class="featured-card-timer">5 months to go</span>
+          </div>
+        </div>
+        <div class="featured-card">
+          <img src="OpenAItoZchallenge.png" alt="OpenAI to Z Challenge">
+          <div class="featured-card-content">
+            <div class="featured-card-title">OpenAI to Z Challenge <span class="material-symbols-outlined" style="float:right;font-size:1.3rem;">more_vert</span></div>
+            <div class="featured-card-desc">Use OpenAI o3/o4 mini and GPT 4.1...</div>
+            <div class="featured-card-meta">Featured &middot; Hackathon</div>
+            <div class="featured-card-teams">6851 Entrants</div>
+          </div>
+          <div class="featured-card-bottom-row">
+            <span class="featured-card-prize">$400,000</span>
+            <span class="featured-card-timer">20 days to go</span>
+          </div>
+        </div>
+        <div class="featured-card">
+          <img src="YaleUNC.png" alt="Yale/UNC-CH - Geophysical Waveform...">
+          <div class="featured-card-content">
+            <div class="featured-card-title">Yale/UNC-CH - Geophysical Waveform... <span class="material-symbols-outlined" style="float:right;font-size:1.3rem;">more_vert</span></div>
+            <div class="featured-card-desc">Develop physics-guided machine le....</div>
+            <div class="featured-card-meta">Research</div>
+            <div class="featured-card-teams">1098 Teams</div>
+          </div>
+          <div class="featured-card-bottom-row">
+            <span class="featured-card-prize">$50,000</span>
+            <span class="featured-card-timer">21 days to go</span>
+          </div>
+        </div>
+        <div class="featured-card">
+          <img src="CMI.png" alt="CMI - Detect Behavior with Sensor Data">
+          <div class="featured-card-content">
+            <div class="featured-card-title">CMI - Detect Behavior with Sensor Data <span class="material-symbols-outlined" style="float:right;font-size:1.3rem;">more_vert</span></div>
+            <div class="featured-card-desc">Predicting Body Focused Repetitive....</div>
+            <div class="featured-card-meta">Featured &middot; Code Competition</div>
+            <div class="featured-card-teams">737 Teams</div>
+          </div>
+          <div class="featured-card-bottom-row">
+            <span class="featured-card-prize">$50,000</span>
+            <span class="featured-card-timer">3 months to go</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="additional-competitions">
+      <div class="additional-cards-grid">
+        <div class="featured-card">
+          <img src="MetaKaggleHackathon.png" alt="Meta Kaggle Hackathon">
+          <div class="featured-card-content">
+            <div class="featured-card-title">Meta Kaggle Hackathon <span class="material-symbols-outlined" style="float:right;font-size:1.3rem;">more_vert</span></div>
+            <div class="featured-card-desc">Dive into data about Kaggle and share y...</div>
+            <div class="featured-card-meta">Featured &middot; Hackathon</div>
+            <div class="featured-card-teams">2157 Entrants</div>
+          </div>
+          <div class="featured-card-bottom-row">
+            <span class="featured-card-prize">$50,000</span>
+            <span class="featured-card-timer">A month to go</span>
+          </div>
+        </div>
+        <div class="featured-card">
+          <img src="PredictingOptimalFertilizer.png" alt="Predicting Optimal Fertilizers">
+          <div class="featured-card-content">
+            <div class="featured-card-title">Predicting Optimal Fertilizers <span class="material-symbols-outlined" style="float:right;font-size:1.3rem;">more_vert</span></div>
+            <div class="featured-card-desc">Playground Series - Season 5, Episode 6</div>
+            <div class="featured-card-meta">Playground</div>
+            <div class="featured-card-teams">1037 Teams</div>
+          </div>
+          <div class="featured-card-bottom-row">
+            <span class="featured-card-prize">Swag</span>
+            <span class="featured-card-timer">21 days to go</span>
+          </div>
+        </div>
+        <div class="featured-card">
+          <img src="Konwinski.png" alt="Konwinski Prize">
+          <div class="featured-card-content">
+            <div class="featured-card-title">Konwinski Prize <span class="material-symbols-outlined" style="float:right;font-size:1.3rem;">more_vert</span></div>
+            <div class="featured-card-desc">$1M for the AI that can close 90% of ne...</div>
+            <div class="featured-card-meta">Featured &middot; Code Competition</div>
+            <div class="featured-card-teams">617 Teams</div>
+          </div>
+          <div class="featured-card-bottom-row">
+            <span class="featured-card-prize">$1,225,000</span>
+            <span class="featured-card-timer">A month to go</span>
+          </div>
+        </div>
+        <div class="featured-card">
+          <img src="JaneStreetRealTimeMarketInfo.png" alt="Jane Street Real-Time Market Data Forecasting">
+          <div class="featured-card-content">
+            <div class="featured-card-title">Jane Street Real-Time Market Data Forecasting <span class="material-symbols-outlined" style="float:right;font-size:1.3rem;">more_vert</span></div>
+            <div class="featured-card-desc">Predict financial market responders using...</div>
+            <div class="featured-card-meta">Featured &middot; Code Competition</div>
+            <div class="featured-card-teams">3757 Teams</div>
+          </div>
+          <div class="featured-card-bottom-row">
+            <span class="featured-card-prize">$120,000</span>
+            <span class="featured-card-timer">A month to go</span>
+          </div>
+        </div>
+        <div class="featured-card">
+          <img src="StanfordRNA.png" alt="Stanford RNA 3D Folding">
+          <div class="featured-card-content">
+            <div class="featured-card-title">Stanford RNA 3D Folding <span class="material-symbols-outlined" style="float:right;font-size:1.3rem;">more_vert</span></div>
+            <div class="featured-card-desc">Solve RNA structure prediction, one of b...</div>
+            <div class="featured-card-meta">Featured &middot; Code Competition</div>
+            <div class="featured-card-teams">1516 Teams</div>
+          </div>
+          <div class="featured-card-bottom-row">
+            <span class="featured-card-prize">$75,000</span>
+            <span class="featured-card-timer">3 months to go</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html> 
+

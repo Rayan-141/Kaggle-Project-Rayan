@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards Page</title>
+    <link href="https://www.kaggle.com/static/images/favicon.ico" rel="shortcut icon" type="image/x-icon" id="dynamic-favicon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #93d3f6, #93d3f6);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2C3E50;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .main-content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+        }
+
+        .my-points {
+            text-align: center;
+        }
+
+        .my-points h2 {
+            font-size: 1.8rem;
+            color: #2C3E50;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .points-display {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 20px;
+        }
+
+        .star-icon {
+            width: 80px;
+            height: 80px;
+            background: #93d3f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            color: white;
+        }
+
+        .points-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #93d3f6;
+            margin-bottom: 10px;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .points-number.animate {
+            transform: scale(1.1);
+            text-shadow: 0 0 20px rgba(244, 208, 63, 0.6);
+        }
+
+        .coin-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #F4D03F, #F1C40F);
+            color: #2C3E50;
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .coin-notification.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .coin-animation {
+            font-size: 1.5rem;
+            animation: coinSpin 0.6s ease-in-out;
+        }
+
+        @keyframes coinSpin {
+            0% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .timer-display {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2C3E50;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .balance-text {
+            font-size: 1.2rem;
+            color: #2C3E50;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .balance-description {
+            color: #7F8C8D;
+            line-height: 1.5;
+        }
+
+        .earn-points h2 {
+            font-size: 1.8rem;
+            color: #2C3E50;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .earn-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .earn-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .earn-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .quiz-icon {
+            background: #FFF3CD;
+        }
+
+        .video-icon {
+            background: #E2E3E5;
+        }
+
+        .friend-icon {
+            background: #FFF3CD;
+        }
+
+        .earn-content {
+            flex: 1;
+        }
+
+        .earn-title {
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 5px;
+        }
+
+        .earn-points-display {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #F4D03F;
+            font-weight: 600;
+        }
+
+        .coin-icon {
+            width: 20px;
+            height: 20px;
+            background: #F4D03F;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .earn-btn {
+            background: white;
+            border: 2px solid #E5E5E5;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #2C3E50;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .earn-btn:hover {
+            background: #93d3f6;
+            border-color: #93d3f6;
+            color: white;
+        }
+
+        .view-more-btn {
+            width: 100%;
+            background: white;
+            border: 2px solid #E5E5E5;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #2C3E50;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .view-more-btn:hover {
+            background: #f8f9fa;
+        }
+
+        .redeem-section {
+            padding: 0 40px 40px;
+        }
+
+        .redeem-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .redeem-header h2 {
+            font-size: 1.8rem;
+            color: #2C3E50;
+            font-weight: 600;
+        }
+
+        .nav-arrows {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-arrow {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #E5E5E5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 18px;
+            color: #7F8C8D;
+        }
+
+        .nav-arrow:hover {
+            background: #93d3f6;
+            border-color: #93d3f6;
+            color: white;
+        }
+
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .reward-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .reward-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .reward-image {
+            width: 100%;
+            height: 200px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7F8C8D;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .reward-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-image {
+            object-fit: contain;
+            padding: 5px;
+            max-width: 75%;
+            max-height: 75%;
+        }
+
+        .flipkart-image {
+            max-width: 80%;
+            max-height: 70%;
+        }
+
+        .reward-status {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .unlocked {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+
+        .locked {
+            background: rgb(255, 255, 255);
+            color: #000000;
+        }
+
+        .lock-icon {
+            width: 12px;
+            height: 12px;
+        }
+
+        .reward-content {
+            padding: 20px;
+        }
+
+        .reward-title {
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #E5E5E5;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #F4D03F;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .reward-points {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .points-cost {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #F4D03F;
+            font-weight: 600;
+        }
+
+        .reward-status-text {
+            font-size: 12px;
+            color: #28a745;
+        }
+
+        .redeem-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #F4D03F;
+            color: #2C3E50;
+        }
+
+        .btn-primary:hover {
+            background: #F1C40F;
+        }
+
+        .btn-disabled {
+            background: #E5E5E5;
+            color: #7F8C8D;
+            cursor: not-allowed;
+        }
+
+        .btn-earned {
+            background: #28a745;
+            color: white;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #E5E5E5;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .dot.active {
+            background: #F4D03F;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .rewards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <img src="Rewards Logo.png" alt="Rewards Logo" class="header-logo">
+                Rewards
+            </h1>
+        </div>
+
+        <div class="main-content">
+            <div class="my-points">
+                <h2>My Points</h2>
+                <div class="points-display">
+                    <div class="star-icon">★</div>
+                    <div class="points-number" id="pointsDisplay">0</div>
+                    <div class="balance-text">Your Balance</div>
+                    <div class="balance-description">
+                        Earn more points, redeem exciting gifts and enjoy your experience
+                    </div>
+                    <div class="timer-display" id="timerDisplay">Next coin in: 5m 0s</div>
+                </div>
+            </div>
+
+            <div class="earn-points">
+                <h2>Earn more points</h2>
+                
+                <div class="earn-item">
+                    <div class="earn-icon quiz-icon">✏️</div>
+                    <div class="earn-content">
+                        <div class="earn-title">Take a quiz</div>
+                        <div class="earn-points-display">
+                            <div class="coin-icon">★</div>
+                            50
+                        </div>
+                    </div>
+                    <button class="earn-btn">Earn</button>
+                </div>
+
+                <div class="earn-item">
+                    <div class="earn-icon video-icon">🎥</div>
+                    <div class="earn-content">
+                        <div class="earn-title">Watch a video</div>
+                        <div class="earn-points-display">
+                            <div class="coin-icon">★</div>
+                            10
+                        </div>
+                    </div>
+                    <button class="earn-btn">Earn</button>
+                </div>
+
+                <div class="earn-item">
+                    <div class="earn-icon friend-icon">👥</div>
+                    <div class="earn-content">
+                        <div class="earn-title">Refer a friend</div>
+                        <div class="earn-points-display">
+                            <div class="coin-icon">★</div>
+                            100
+                        </div>
+                    </div>
+                    <button class="earn-btn">Earn</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="redeem-section">
+            <div class="redeem-header">
+                <h2>Redeem</h2>
+                <div class="nav-arrows">
+                    <div class="nav-arrow" onclick="previousSlide()">‹</div>
+                    <div class="nav-arrow" onclick="nextSlide()">›</div>
+                </div>
+            </div>
+
+            <div class="rewards-grid" id="rewardsGrid">
+                <div class="reward-card" data-cost="500">
+                    <div class="reward-image">
+                        <div class="reward-status locked">
+                            🔒 Locked
+                        </div>
+                        <img src="Flipkart Rewards.png" alt="Flipkart Gift Card" class="flipkart-image">
+                    </div>
+                    <div class="reward-content">
+                        <div class="reward-title">Flipkart ₹100 Gift Card </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="reward-points">
+                            <div class="points-cost">
+                                <div class="coin-icon">★</div>
+                                500
+                            </div>
+                        </div>
+                        <button class="redeem-btn btn-disabled">Redeem</button>
+                    </div>
+                </div>
+
+                <div class="reward-card" data-cost="600">
+                    <div class="reward-image">
+                        <div class="reward-status locked">
+                            🔒 Locked
+                        </div>
+                        <img src="Amazon Rewards.png" alt="Amazon Gift Card">
+                    </div>
+                    <div class="reward-content">
+                        <div class="reward-title">Amazon.com ₹100 Gift Card</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="reward-points">
+                            <div class="points-cost">
+                                <div class="coin-icon">★</div>
+                                600
+                            </div>
+                        </div>
+                        <button class="redeem-btn btn-disabled">Redeem</button>
+                    </div>
+                </div>
+
+                <div class="reward-card" data-cost="1500">
+                    <div class="reward-image">
+                        <div class="reward-status locked">
+                            🔒 Locked
+                        </div>
+                        <img src="Earphones Rewards.jpg" alt="Earphones Wired" class="product-image">
+                    </div>
+                    <div class="reward-content">
+                        <div class="reward-title">Earphones Wired</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="reward-points">
+                            <div class="points-cost">
+                                <div class="coin-icon">★</div>
+                                1500
+                            </div>
+                        </div>
+                        <button class="redeem-btn btn-disabled">Redeem</button>
+                    </div>
+                </div>
+
+                <div class="reward-card" data-cost="3500">
+                    <div class="reward-image">
+                        <div class="reward-status locked">
+                            🔒 Locked
+                        </div>
+                        <img src="HeadPhones Rewards.webp" alt="Headphones" class="product-image">
+                    </div>
+                    <div class="reward-content">
+                        <div class="reward-title">Headphones</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="reward-points">
+                            <div class="points-cost">
+                                <div class="coin-icon">★</div>
+                                3500
+                            </div>
+                        </div>
+                        <button class="redeem-btn btn-disabled">Redeem</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="coin-notification" id="coinNotification">
+        <span class="coin-animation">🪙</span>
+        <span>+1 Coin Earned!</span>
+    </div>
+
+    <script>
+        let currentCoins = 0;
+        let coinTimer = 300; // 5 minutes
+        let timerInterval;
+
+        function initializeCoinSystem() {
+            // Load saved coins if available
+            const savedCoins = localStorage.getItem('tbh_user_coins');
+            currentCoins = savedCoins !== null ? parseInt(savedCoins) : 0;
+
+            // Load saved timer and timestamp
+            const savedTimer = localStorage.getItem('tbh_coin_timer');
+            const savedTimerTimestamp = localStorage.getItem('tbh_timer_timestamp');
+            if (savedTimer !== null && savedTimerTimestamp !== null) {
+                const timeElapsed = Math.floor((Date.now() - parseInt(savedTimerTimestamp)) / 1000);
+                let remainingTime = parseInt(savedTimer) - timeElapsed;
+                
+                // If enough time has passed to earn coins
+                if (remainingTime <= 0) {
+                    const coinsEarned = Math.floor(Math.abs(remainingTime) / 300) + 1;
+                    currentCoins += coinsEarned;
+                    remainingTime = 300 - (Math.abs(remainingTime) % 300);
+                    saveCoins();
+                }
+                coinTimer = Math.max(1, remainingTime);
+            }
+
+            updatePointsDisplay();
+            startCoinTimer();
+        }
+
+        function startCoinTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+
+            timerInterval = setInterval(() => {
+                if (!document.hidden) {
+                    coinTimer--;
+                    updateTimerDisplay();
+                    
+                    if (coinTimer <= 0) {
+                        earnCoin();
+                        coinTimer = 300; // Reset to 5 minutes
+                    }
+                    localStorage.setItem('tbh_coin_timer', coinTimer.toString());
+                    localStorage.setItem('tbh_timer_timestamp', Date.now().toString());
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const timerElement = document.getElementById('timerDisplay');
+            const minutes = Math.floor(coinTimer / 60);
+            const seconds = coinTimer % 60;
+            timerElement.textContent = `Next coin in: ${minutes}m ${seconds}s`;
+        }
+
+        function earnCoin() {
+            currentCoins++;
+            saveCoins();
+            animateCoinEarning();
+            showCoinNotification();
+            updatePointsDisplay();
+        }
+
+        function animateCoinEarning() {
+            const pointsElement = document.getElementById('pointsDisplay');
+            pointsElement.classList.add('animate');
+            
+            setTimeout(() => {
+                pointsElement.classList.remove('animate');
+            }, 500);
+        }
+
+        function showCoinNotification() {
+            const notification = document.getElementById('coinNotification');
+            notification.innerHTML = `
+                <span class="coin-animation">🪙</span>
+                <span>+1 Coin Earned!</span>
+            `;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        function updatePointsDisplay() {
+            const pointsElement = document.getElementById('pointsDisplay');
+            pointsElement.textContent = currentCoins;
+            updateRewardStatus();
+        }
+
+        function updateRewardStatus() {
+            const rewardCards = document.querySelectorAll('.reward-card');
+            
+            rewardCards.forEach(card => {
+                const cost = parseInt(card.dataset.cost);
+                const statusElement = card.querySelector('.reward-status');
+                const progressFill = card.querySelector('.progress-fill');
+                const redeemButton = card.querySelector('.redeem-btn');
+                
+                const progressPercentage = Math.min((currentCoins / cost) * 100, 100);
+                progressFill.style.width = progressPercentage + '%';
+                
+                if (currentCoins >= cost) {
+                    statusElement.className = 'reward-status unlocked';
+                    statusElement.innerHTML = '🔓 Unlocked';
+                    redeemButton.className = 'redeem-btn btn-primary';
+                    redeemButton.textContent = 'Redeem';
+                    redeemButton.disabled = false;
+                    
+                    if (progressFill.style.width !== '100%') {
+                        showUnlockNotification(card.querySelector('.reward-title').textContent);
+                    }
+                } else {
+                    statusElement.className = 'reward-status locked';
+                    statusElement.innerHTML = '🔒 Locked';
+                    redeemButton.className = 'redeem-btn btn-disabled';
+                    redeemButton.textContent = 'Redeem';
+                    redeemButton.disabled = true;
+                }
+            });
+        }
+
+        function showUnlockNotification(itemName) {
+            const notification = document.getElementById('coinNotification');
+            notification.innerHTML = `
+                <span class="coin-animation">🔓</span>
+                <span>${itemName} Unlocked!</span>
+            `;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function saveCoins() {
+            localStorage.setItem('tbh_user_coins', currentCoins.toString());
+            localStorage.setItem('tbh_last_visit', Date.now().toString());
+        }
+
+        function addCoins(amount) {
+            currentCoins += amount;
+            saveCoins();
+            updatePointsDisplay();
+            animateCoinEarning();
+            
+            const notification = document.getElementById('coinNotification');
+            notification.innerHTML = `
+                <span class="coin-animation">🎉</span>
+                <span>+${amount} Bonus Coins!</span>
+            `;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                localStorage.setItem('tbh_last_active', Date.now().toString());
+                localStorage.setItem('tbh_coin_timer', coinTimer.toString());
+                localStorage.setItem('tbh_timer_timestamp', Date.now().toString());
+                if (timerInterval) clearInterval(timerInterval);
+            } else {
+                const savedTimer = localStorage.getItem('tbh_coin_timer');
+                const savedTimerTimestamp = localStorage.getItem('tbh_timer_timestamp');
+                if (savedTimer !== null && savedTimerTimestamp !== null) {
+                    const timeElapsed = Math.floor((Date.now() - parseInt(savedTimerTimestamp)) / 1000);
+                    let remainingTime = parseInt(savedTimer) - timeElapsed;
+                    
+                    if (remainingTime <= 0) {
+                        const coinsEarned = Math.floor(Math.abs(remainingTime) / 300) + 1;
+                        currentCoins += coinsEarned;
+                        remainingTime = 300 - (Math.abs(remainingTime) % 300);
+                        saveCoins();
+                    }
+                    coinTimer = Math.max(1, remainingTime);
+                    localStorage.setItem('tbh_coin_timer', coinTimer.toString());
+                    localStorage.setItem('tbh_timer_timestamp', Date.now().toString());
+                }
+                startCoinTimer();
+            }
+        });
+
+        window.addEventListener('beforeunload', function() {
+            saveCoins();
+            localStorage.setItem('tbh_coin_timer', coinTimer.toString());
+            localStorage.setItem('tbh_timer_timestamp', Date.now().toString());
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCoinSystem();
+        });
+
+        let currentSlide = 0;
+        const totalSlides = 2;
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateDots();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateDots();
+        }
+
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        document.querySelectorAll('.earn-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const earnItem = this.closest('.earn-item');
+                const pointsText = earnItem.querySelector('.earn-points-display').textContent.trim();
+                const points = parseInt(pointsText);
+                
+                if (!isNaN(points)) {
+                    addCoins(points);
+                    
+                    this.textContent = 'Claimed!';
+                    this.style.background = '#28a745';
+                    this.style.color = 'white';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.textContent = 'Earn';
+                        this.style.background = '';
+                        this.style.color = '';
+                        this.disabled = false;
+                    }, 3000);
+                }
+            });
+        });
+
+        document.querySelectorAll('.redeem-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!this.classList.contains('btn-disabled') && !this.classList.contains('btn-earned')) {
+                    const rewardCard = this.closest('.reward-card');
+                    const costText = rewardCard.querySelector('.points-cost').textContent.trim();
+                    const cost = parseInt(costText);
+                    
+                    if (!isNaN(cost) && currentCoins >= cost) {
+                        currentCoins -= cost;
+                        saveCoins();
+                        updatePointsDisplay();
+                        
+                        this.textContent = '✓ Redeemed';
+                        this.className = 'redeem-btn btn-earned';
+                        
+                        const notification = document.getElementById('coinNotification');
+                        notification.innerHTML = `
+                            <span class="coin-animation">🎁</span>
+                            <span>Item Redeemed Successfully!</span>
+                        `;
+                        notification.classList.add('show');
+                        
+                        setTimeout(() => {
+                            notification.classList.remove('show');
+                        }, 2000);
+                    } else {
+                        const notification = document.getElementById('coinNotification');
+                        notification.innerHTML = `
+                            <span class="coin-animation">❌</span>
+                            <span>Insufficient Coins!</span>
+                        `;
+                        notification.classList.add('show');
+                        
+                        setTimeout(() => {
+                            notification.classList.remove('show');
+                        }, 2000);
+                    }
+                }
+            });
+        });
+
+        function resetCoins() {
+            localStorage.removeItem('tbh_user_coins');
+            localStorage.removeItem('tbh_last_visit');
+            localStorage.removeItem('tbh_last_active');
+            localStorage.removeItem('tbh_coin_timer');
+            localStorage.removeItem('tbh_timer_timestamp');
+            currentCoins = 0;
+            coinTimer = 300;
+            updatePointsDisplay();
+            console.log('Coins and timer reset');
+        }
+
+        function debugAddCoins(amount = 100) {
+            addCoins(amount);
+            console.log(`Added ${amount} coins. Total: ${currentCoins}`);
+        }
+    </script>
+</body>
+</html>
